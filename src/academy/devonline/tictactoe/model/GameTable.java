@@ -14,17 +14,11 @@
  *    limitations under the License.
  */
 
-package academy.devonline.tictactoe;
+package academy.devonline.tictactoe.model;
 
 /**
  * @author Stan K
  * link link.com
  */
-public class DataPrinter {
-
-    public void printMappingTable() {
-    }
-
-    public void printGameTable(GameTable gameTable) {
-    }
+public class GameTable {
 }

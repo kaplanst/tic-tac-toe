@@ -14,20 +14,15 @@
  *    limitations under the License.
  */
 
-package academy.devonline.tictactoe;
+package academy.devonline.tictactoe.component;
+
+import academy.devonline.tictactoe.model.GameTable;
 
 /**
  * @author Stan K
  * link link.com
  */
-public class WinnerVerifier {
-    public boolean isUserWin(GameTable gameTable) {
-
-        return false;
-    }
-
-    public boolean isComputerWin(GameTable gameTable) {
-
-        return false;
+public class UserMove {
+    public void make(GameTable gameTable) {
     }
 }
