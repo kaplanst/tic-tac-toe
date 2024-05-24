@@ -26,9 +26,13 @@ import java.util.Random;
  */
 public class Game {
     private final DataPrinter dataPrinter;
+
     private final ComputerMove computerMove;
+
     private final UserMove userMove;
+
     private final WinnerVerifier winnerVerifier;
+
     private final DrawVerifier drawVerifier;
 
     public Game(DataPrinter dataPrinter,
