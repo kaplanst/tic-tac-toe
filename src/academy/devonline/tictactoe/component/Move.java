@@ -17,24 +17,20 @@
 package academy.devonline.tictactoe.component;
 
 import academy.devonline.tictactoe.model.Cell;
-import academy.devonline.tictactoe.model.GameTable;
-
-import java.util.Random;
 
 /**
  * @author Stan K
  * link link.com
  */
-public class ComputerMove extends Move {
+public class Move {
 
-    public void make(GameTable gameTable) {
-        while (true) {
-            int number = new Random().nextInt(9) + 1;
-            Cell cell = convert(number);
-            if (gameTable.isEmpty(cell)) {
-                gameTable.setSign(cell, 'O');
-                break;
+    public Cell convert(int number) {
+        int value = 1;
+        for (int i = 2; i >= 0; i--) {
+            for (int j = 0; j < 3; j++) {
+                if (value++ == number) return new Cell(i, j);
             }
         }
+        return null;
     }
 }
