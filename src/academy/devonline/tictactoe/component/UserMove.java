@@ -35,7 +35,7 @@ public class UserMove extends Move {
                 System.out.println("Please, type number between 1 and 9");
                 number = console.nextLine();
                 ch = number.charAt(0);
-                if (ch > '1' && ch < '9') break;
+                if (ch >= '1' && ch <= '9') break;
             }
 
             Cell cell = convert(Character.getNumericValue(ch));
