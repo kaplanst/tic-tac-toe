@@ -16,13 +16,33 @@
 
 package academy.devonline.tictactoe.component;
 
+import academy.devonline.tictactoe.model.Cell;
 import academy.devonline.tictactoe.model.GameTable;
+
+import java.util.Scanner;
 
 /**
  * @author Stan K
  * link link.com
  */
-public class UserMove {
-    public void make(GameTable gameTable) {
+public class UserMove extends Move {
+    public void make(final GameTable gameTable) {
+        String number;
+        char ch;
+        Scanner console = new Scanner(System.in);
+        while (true) {
+            while (true) {
+                System.out.println("Please, type number between 1 and 9");
+                number = console.nextLine();
+                ch = number.charAt(0);
+                if (ch > '1' && ch < '9') break;
+            }
+
+            Cell cell = convert(Character.getNumericValue(ch));
+            if (gameTable.isEmpty(cell)) {
+                gameTable.setSign(cell, 'X');
+                break;
+            } else System.out.println("This cell is not free.");
+        }
     }
 }
