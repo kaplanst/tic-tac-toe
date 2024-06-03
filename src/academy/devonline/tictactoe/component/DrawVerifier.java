@@ -16,6 +16,7 @@
 
 package academy.devonline.tictactoe.component;
 
+import academy.devonline.tictactoe.model.Cell;
 import academy.devonline.tictactoe.model.GameTable;
 
 /**
@@ -24,7 +25,11 @@ import academy.devonline.tictactoe.model.GameTable;
  */
 public class DrawVerifier {
     public boolean isDraw(GameTable gameTable) {
-
-        return false;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (gameTable.getSign(new Cell(j, i)) == ' ') return false;
+            }
+        }
+        return true;
     }
 }
