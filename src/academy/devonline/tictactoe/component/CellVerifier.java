@@ -23,8 +23,8 @@ import academy.devonline.tictactoe.model.GameTable;
  * @author Stan K
  * link link.com
  */
-public class DrawVerifier {
-    public boolean isDraw(GameTable gameTable) {
+public class CellVerifier {
+    public boolean allCellsFilled(GameTable gameTable) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (gameTable.getSign(new Cell(j, i)) == ' ') return false;
