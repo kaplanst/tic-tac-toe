@@ -1,17 +1,18 @@
 /*
- *    Copyright 2024 Stan Kaplan
+ * Copyright (c) 2019. http://devonline.academy
  *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *        http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  */
 
 package academy.devonline.tictactoe.component;
@@ -20,51 +21,57 @@ import academy.devonline.tictactoe.model.Cell;
 import academy.devonline.tictactoe.model.GameTable;
 
 /**
- * @author Stan K
- * link link.com
+ * @author devonline
+ * @link http://devonline.academy/java
  */
 public class WinnerVerifier {
-    public boolean isUserWin(final GameTable gameTable) {
 
+    public boolean isUserWin(final GameTable gameTable) {
         return isWinner(gameTable, 'X');
     }
 
     public boolean isComputerWin(final GameTable gameTable) {
-
         return isWinner(gameTable, 'O');
     }
 
-    private boolean isWinner(GameTable gameTable, char sign) {
-        for (int i = 0; i < 3; i++) {
-            int row = 0;
-            for (int j = 0; j < 3; j++) {
-                Cell cell = new Cell(i, j);
-                if (gameTable.getSign(cell) == sign) {
-                    row++;
-                }
-            }
-            if (row == 3) return true;
-        }
-        for (int i = 0; i < 3; i++) {
-            int col = 0;
-            for (int j = 0; j < 3; j++) {
-                Cell cell = new Cell(j, i);
-                if (gameTable.getSign(cell) == sign) {
-                    col++;
-                }
-            }
-            if (col == 3) return true;
-        }
-        int diagonal1 = 0;
-        int diagonal2 = 0;
-        for (int i = 0; i < 3; i++) {
-            Cell cell1 = new Cell(i, i);
-            Cell cell2 = new Cell(2 - i, i);
-            if (gameTable.getSign(cell1) == sign) diagonal1++;
-            if (gameTable.getSign(cell2) == sign) diagonal2++;
-        }
-        if (diagonal1 == 3 || diagonal2 == 3) return true;
+    private boolean isWinner(final GameTable gameTable, final char sign) {
+        return isWinnerByRows(gameTable, sign) ||
+                isWinnerByCols(gameTable, sign) ||
+                isWinnerByMainDiagonal(gameTable, sign) ||
+                isWinnerBySecondaryDiagonal(gameTable, sign);
+    }
 
+    private boolean isWinnerByRows(final GameTable gameTable, final char sign) {
+        for (int i = 0; i < 3; i++) {
+            if (gameTable.getSign(new Cell(i, 0)) == gameTable.getSign(new Cell(i, 1)) &&
+                    gameTable.getSign(new Cell(i, 1)) == gameTable.getSign(new Cell(i, 2)) &&
+                    gameTable.getSign(new Cell(i, 2)) == sign) {
+                return true;
+            }
+        }
         return false;
+    }
+
+    private boolean isWinnerByCols(final GameTable gameTable, final char sign) {
+        for (int i = 0; i < 3; i++) {
+            if (gameTable.getSign(new Cell(0, i)) == gameTable.getSign(new Cell(1, i)) &&
+                    gameTable.getSign(new Cell(1, i)) == gameTable.getSign(new Cell(2, i)) &&
+                    gameTable.getSign(new Cell(2, i)) == sign) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isWinnerByMainDiagonal(final GameTable gameTable, final char sign) {
+        return gameTable.getSign(new Cell(0, 0)) == gameTable.getSign(new Cell(1, 1)) &&
+                gameTable.getSign(new Cell(1, 1)) == gameTable.getSign(new Cell(2, 2)) &&
+                gameTable.getSign(new Cell(2, 2)) == sign;
+    }
+
+    private boolean isWinnerBySecondaryDiagonal(final GameTable gameTable, final char sign) {
+        return gameTable.getSign(new Cell(2, 0)) == gameTable.getSign(new Cell(1, 1)) &&
+                gameTable.getSign(new Cell(1, 1)) == gameTable.getSign(new Cell(0, 2)) &&
+                gameTable.getSign(new Cell(0, 2)) == sign;
     }
 }
